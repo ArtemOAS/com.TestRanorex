@@ -7,12 +7,13 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.junit.Assert;
+import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by Тёма on 28.12.2014.
  */
-public class AddAUserMaleUsingTheCategoriesSteps {
-    HomePage homePage = new HomePage(WebDriverFactory.getWebDriver());
+public class AddAUserFemaleAndMailUsingTheCategoriesSteps {
+    HomePage homePage = PageFactory.initElements(WebDriverFactory.getWebDriver(),HomePage.class);
 
     @Given("Open ranorex")
     public void getUrlHome(){
@@ -26,6 +27,10 @@ public class AddAUserMaleUsingTheCategoriesSteps {
             homePage.getWebElementCategory(categoryName).click();
             homePage.enterFirstName();
             homePage.enterLastName();
+            homePage.chooseFemale();
+            homePage.addUser();
+            homePage.enterFirstName();
+            homePage.enterLastName();
             homePage.chooseMale();
             homePage.addUser();
         }
@@ -33,6 +38,6 @@ public class AddAUserMaleUsingTheCategoriesSteps {
 
     @Then("Vip user add")
     public void vipUserAdd(){
-        Assert.assertTrue("registered user", homePage.registeredUser.isDisplayed());
+            Assert.assertTrue("registered user", homePage.registeredUser.isDisplayed());
     }
 }

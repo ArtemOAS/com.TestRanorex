@@ -1,5 +1,4 @@
 Scenario: Save VIP user
 Given Open ranorex
-When Load VIP Users
-And Save VIP users
-And Confirm saving
+When Save VIP users
+Then Confirm save VIP users

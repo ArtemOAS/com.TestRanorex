@@ -2,6 +2,7 @@ package com.ranorextest.pageobject;
 
 import com.ranorextest.AllVIPUsers;
 import com.ranorextest.Category;
+import com.ranorextest.MaleFemale;
 import com.ranorextest.RanorexTest.webdriver.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -55,7 +56,7 @@ public class HomePage {
 
     WebElement addUser;
     public void addUser(){
-        addUser = (new WebDriverWait(webDriver,10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='Add']")));
+        addUser = (new WebDriverWait(webDriver,60)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='Add']")));
         addUser.click();
     }
 
@@ -81,7 +82,7 @@ public class HomePage {
         delete.click();
     }
 
-    @FindBy(xpath = ".//*[@id='VIPs']")
+    @FindBy(id = "VIPs")
     public WebElement userIsDeleted;
 
     @FindBy(xpath = ".//*[@id='Gender'][@value='female']")
@@ -120,17 +121,7 @@ public class HomePage {
     @FindBy(xpath = ".//*[@id='connect'][@value='Disconnect...']")
     public WebElement checkConnect;
 
-    @FindBy(xpath=".//*[@id='alertOKCancel']/center/button[text()='OK']")
-    WebElement connectOk;
-    public void connectOk(){
-        connectOk.click();
-    }
 
-    @FindBy(xpath=".//*[@id='alertOKCancel']/center/button[text()='Cancel']")
-    WebElement connectCancel;
-    public void connectCancel(){
-        connectCancel.click();
-    }
 
     @FindBy(id = "Load")
     WebElement loadAllUsers;
@@ -163,16 +154,20 @@ public class HomePage {
         saveVIPUser.click();
     }
 
-    @FindBy(xpath = "//button[contains(text(),'OK')]")
-    WebElement storedSuccessfully;
-    public void storedSuccessfully(){
-        storedSuccessfully.click();
+    public Set<MaleFemale> malesFemales(){
+        Set<MaleFemale> maleFemale = new HashSet<>();
+        List<WebElement> maleFemaleElement = WebDriverFactory.getWebDriver().findElements(By.xpath(".//td[@id='gender']/table/tbody/tr[position() mod 2+2]/td"));
+
+        for (WebElement element: maleFemaleElement) {
+            MaleFemale malesFemales = new MaleFemale(element.getText());
+            maleFemale.add(malesFemales);
+        }
+        return maleFemale;
     }
 
-    @FindBy(xpath = "//button[contains(text(),'OK')]")
-    WebElement confirmIncorrectFilling;
-    public void confirmIncorrectFilling(){
-        confirmIncorrectFilling.click();
+    public WebElement getWebElementMaleFemale(String maleFemaleName){
+        WebElement element = (new WebDriverWait(webDriver,20)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//td[@id='gender']/table/tbody/tr/td[text()[normalize-space(.)='" + maleFemaleName + "']]/input[@id='Gender']")));
+        return element;
     }
 
 }

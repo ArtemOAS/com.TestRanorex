@@ -5,9 +5,10 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.junit.Assert;
 import com.ranorextest.pageobject.HomePage;
+import org.openqa.selenium.support.PageFactory;
 
 public class OpenRanorexSteps {
-    HomePage homePage = new HomePage(WebDriverFactory.getWebDriver());
+    HomePage homePage = PageFactory.initElements(WebDriverFactory.getWebDriver(), HomePage.class);
 
     @Given("User open ranorex page")
     public void givenUSerOpenRanorex(){

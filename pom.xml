@@ -100,10 +100,10 @@
                   <name>phantomjs.binary.path</name>
                   <value>${project.basedir}/bin/phantomjs</value>
                 </property>
-                <property>
-                  <name>webdriver.chrome.driver</name>
-                  <value>${project.basedir}/bin/chromedriver</value>
-                </property>
+                <!--<property>-->
+                  <!--<name>webdriver.chrome.driver</name>-->
+                  <!--<value>${project.basedir}/bin/chromedriver</value>-->
+                <!--</property>-->
               </systemProperties>
               <ignoreFailureInStories>true</ignoreFailureInStories>
               <ignoreFailureInView>false</ignoreFailureInView>

@@ -48,7 +48,6 @@ public class WebDriverFactory {
         if (StringUtils.isEmpty(browser)) {
             browser = "CHROME";
         }
-
         return browser.toUpperCase();
     }
 
